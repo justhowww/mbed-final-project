@@ -1,12 +1,16 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import {
+  useEffect,
+  useRef,
+  useState,
+} from "../air-basket/node_modules/@types/react";
 import {
   createDetector,
   SupportedModels,
 } from "@tensorflow-models/hand-pose-detection";
 import "@tensorflow/tfjs-backend-webgl";
 import { drawHands, fitToContainer, transformLandmarks } from "../lib/utils";
-import Link from "next/link";
+import Link from "../air-basket/node_modules/next/link";
 import { useAnimationFrame } from "../lib/hook/useAnimationFrame";
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
 import * as fp from "fingerpose";
