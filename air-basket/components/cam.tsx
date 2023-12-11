@@ -23,7 +23,7 @@ async function setupVideo() {
   });
 
   video.srcObject = stream;
-  await new Promise((resolve) => {
+  await new Promise<void>((resolve) => {
     video.onloadedmetadata = () => {
       resolve();
     };
@@ -69,13 +69,13 @@ export default function Cam() {
       const ctx = await setupCanvas(videoRef.current);
       detectorRef.current = await setupDetector();
 
-      setCtx(ctx);
+      setCtx(ctx || undefined);
     }
 
     initialize();
   }, []);
 
-  useAnimationFrame(async (delta) => {
+  useAnimationFrame(async (delta: any) => {
     const hands = await detectorRef.current.estimateHands(videoRef.current, {
       FlipLeftRight: false,
     });
@@ -86,19 +86,21 @@ export default function Cam() {
       );
       console.log(estimatedGestures.gestures);
     }
-    ctx.clearRect(
-      0,
-      0,
-      videoRef.current.videoWidth,
-      videoRef.current.videoHeight
-    );
-    ctx.drawImage(
-      videoRef.current,
-      0,
-      0,
-      videoRef.current.videoWidth,
-      videoRef.current.videoHeight
-    );
+    if (ctx && videoRef.current) {
+      ctx.clearRect(
+        0,
+        0,
+        videoRef.current.videoWidth,
+        videoRef.current.videoHeight
+      );
+      ctx.drawImage(
+        videoRef.current,
+        0,
+        0,
+        videoRef.current.videoWidth,
+        videoRef.current.videoHeight
+      );
+    }
     drawHands(hands, ctx);
   }, !!(detectorRef.current && videoRef.current && ctx));
 
