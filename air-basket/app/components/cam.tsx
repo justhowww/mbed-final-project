@@ -1,9 +1,9 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-import {
-  createDetector,
-  SupportedModels,
-} from "@tensorflow-models/hand-pose-detection";
+// import {
+//   createDetector,
+//   SupportedModels,
+// } from "@tensorflow-models/hand-pose-detection";
 import "@tensorflow/tfjs-backend-webgl";
 import { drawHands, transformLandmarks } from "../lib/_utils";
 import { useAnimationFrame } from "../lib/hook/_useAnimationFrame";
