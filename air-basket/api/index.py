@@ -1,4 +1,3 @@
-import cv2
 from flask import Flask, render_template
 from flask_cors import CORS
 from flask_socketio import SocketIO

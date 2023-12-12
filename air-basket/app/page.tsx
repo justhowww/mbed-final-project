@@ -1,5 +1,5 @@
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
-// import Cam from "@/components/cam";
+import Cam from "@/components/cam";
 tfjsWasm.setWasmPaths(
   `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm`
 );
@@ -21,7 +21,7 @@ export default function Home() {
         <div className="flex-grow" />
         <div className="p-4 border-4 border-blue-500">
           <h2>Your view:</h2>
-          {/* <Cam /> */}
+          <Cam />
         </div>
       </div>
     </div>
