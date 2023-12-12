@@ -24,41 +24,41 @@ export default function Cam() {
     initialize();
   }, []);
 
-  useAnimationFrame(async (delta: any) => {
-    const hands = await detectorRef.current.estimateHands(videoRef.current, {
-      FlipLeftRight: false,
-    });
-    if (hands.length > 0) {
-      const estimatedGestures = GE.estimate(
-        transformLandmarks(hands[0].keypoints3D),
-        8
-      );
-      console.log(estimatedGestures.gestures);
-    }
-    if (ctx && videoRef.current) {
-      ctx.clearRect(
-        0,
-        0,
-        videoRef.current.videoWidth,
-        videoRef.current.videoHeight
-      );
-      ctx.drawImage(
-        videoRef.current,
-        0,
-        0,
-        videoRef.current.videoWidth,
-        videoRef.current.videoHeight
-      );
-    }
-    drawHands(hands, ctx);
-  }, !!(detectorRef.current && videoRef.current && ctx));
+  // useAnimationFrame(async (delta: any) => {
+  //   const hands = await detectorRef.current.estimateHands(videoRef.current, {
+  //     FlipLeftRight: false,
+  //   });
+  //   if (hands.length > 0) {
+  //     const estimatedGestures = GE.estimate(
+  //       transformLandmarks(hands[0].keypoints3D),
+  //       8
+  //     );
+  //     console.log(estimatedGestures.gestures);
+  //   }
+  //   if (ctx && videoRef.current) {
+  //     ctx.clearRect(
+  //       0,
+  //       0,
+  //       videoRef.current.videoWidth,
+  //       videoRef.current.videoHeight
+  //     );
+  //     ctx.drawImage(
+  //       videoRef.current,
+  //       0,
+  //       0,
+  //       videoRef.current.videoWidth,
+  //       videoRef.current.videoHeight
+  //     );
+  //   }
+  //   drawHands(hands, ctx);
+  // }, !!(detectorRef.current && videoRef.current && ctx));
 
   return (
     <div className="mt-2 border-4 border-blue-500 ">
-      <canvas
+      {/* <canvas
         className="transform scaleX(-1) z-10 rounded-lg shadow-md "
         id="canvas"
-      ></canvas>
+      ></canvas> */}
       <video
         className="hidden transform scaleX(-1) "
         id="video"
