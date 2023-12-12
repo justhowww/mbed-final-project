@@ -22,7 +22,7 @@ export default function Home() {
         <div className="flex-grow" />
         <div className="p-4 border-4 border-blue-500">
           <h2>Your view:</h2>
-          <Cam />
+          {/* <Cam /> */}
         </div>
       </div>
     </div>
