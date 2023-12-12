@@ -18,6 +18,10 @@ module.exports = {
   experimental: {
     outputFileTracingExcludes: {
       "*": [
+        "**canvas**",
+        "node_modules/@mediapipe/hands",
+        "node_modules/@tensorflow-models/hand-pose-detection",
+        "node_modules/@tensorflow-models/handpose",
         "node_modules/@tensorflow/tfjs-backend-wasm",
         "node_modules/@tensorflow/tfjs-backend-webgl",
         "node_modules/@tensorflow/tfjs-converter",
