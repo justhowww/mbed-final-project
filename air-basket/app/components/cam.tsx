@@ -1,9 +1,6 @@
 "use client";
 import { useEffect, useRef, useState } from "react";
-// import {
-//   createDetector,
-//   SupportedModels,
-// } from "@tensorflow-models/hand-pose-detection";
+
 import "@tensorflow/tfjs-backend-webgl";
 import { drawHands, transformLandmarks } from "../lib/_utils";
 import { useAnimationFrame } from "../lib/hook/_useAnimationFrame";
@@ -14,20 +11,11 @@ export default function Cam() {
   const detectorRef = useRef<any>();
   const videoRef = useRef<HTMLVideoElement>();
   // const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
-  // async function setupDetector() {
-  //   const model = SupportedModels.MediaPipeHands;
-  //   const detector = await createDetector(model, {
-  //     runtime: "mediapipe",
-  //     maxHands: 2,
-  //     solutionPath: "https://cdn.jsdelivr.net/npm/@mediapipe/hands",
-  //   });
 
-  //   return detector;
-  // }
   useEffect(() => {
     async function initialize() {
-      // videoRef.current = (await setupVideo()) as HTMLVideoElement;
-      // const ctx = await setupCanvas(videoRef.current);
+      videoRef.current = (await setupVideo()) as HTMLVideoElement;
+      const ctx = await setupCanvas(videoRef.current);
       // detectorRef.current = await setupDetector();
       // setCtx(ctx || undefined);
     }

@@ -1,5 +1,8 @@
 import { fitToContainer } from "./_utils";
-
+// import {
+//   createDetector,
+//   SupportedModels,
+// } from "@tensorflow-models/hand-pose-detection";
 export async function setupVideo() {
   const video = document.getElementById("video");
   const stream = await window.navigator.mediaDevices.getUserMedia({
@@ -30,3 +33,13 @@ export async function setupCanvas(video) {
 
   return ctx;
 }
+// async function setupDetector() {
+//   const model = SupportedModels.MediaPipeHands;
+//   const detector = await createDetector(model, {
+//     runtime: "mediapipe",
+//     maxHands: 2,
+//     solutionPath: "https://cdn.jsdelivr.net/npm/@mediapipe/hands",
+//   });
+
+//   return detector;
+// }
