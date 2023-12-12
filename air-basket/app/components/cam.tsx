@@ -10,18 +10,16 @@ import { setupCanvas, setupDetector, setupVideo } from "../lib/_setup";
 export default function Cam() {
   const detectorRef = useRef<any>();
   const videoRef = useRef<HTMLVideoElement>();
-  const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
+  // const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
 
   useEffect(() => {
-    async function initialize() {
-      videoRef.current = (await setupVideo()) as HTMLVideoElement;
-      const ctx = await setupCanvas(videoRef.current);
-      detectorRef.current = await setupDetector();
-
-      setCtx(ctx || undefined);
-    }
-
-    initialize();
+    // async function initialize() {
+    //   videoRef.current = (await setupVideo()) as HTMLVideoElement;
+    //   const ctx = await setupCanvas(videoRef.current);
+    //   detectorRef.current = await setupDetector();
+    //   setCtx(ctx || undefined);
+    // }
+    // initialize();
   }, []);
 
   // useAnimationFrame(async (delta: any) => {
