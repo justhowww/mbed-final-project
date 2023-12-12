@@ -17,7 +17,16 @@ module.exports = {
   output: "standalone",
   experimental: {
     outputFileTracingExcludes: {
-      "*": ["node_modules/@tensorflow-models/hand-pose-detection"],
+      "*": [
+        "**canvas**",
+        "node_modules/@mediapipe/hands",
+        "node_modules/@tensorflow-models/hand-pose-detection",
+        "node_modules/@tensorflow-models/handpose",
+        "node_modules/@tensorflow/tfjs-backend-wasm",
+        "node_modules/@tensorflow/tfjs-backend-webgl",
+        "node_modules/@tensorflow/tfjs-converter",
+        "node_modules/@tensorflow/tfjs-core",
+      ],
     },
   },
   webpack: (
