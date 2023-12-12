@@ -35,6 +35,6 @@
     "encoding": "^0.1.13",
     "concurrently": "^8.0.1",
     "eslint": "8.40.0",
-    "eslint-config-next": "13.4.2",
+    "eslint-config-next": "13.4.2"
   }
 }
