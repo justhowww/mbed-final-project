@@ -8,8 +8,7 @@ import "@tensorflow/tfjs-backend-webgl";
 import { drawHands, fitToContainer, transformLandmarks } from "../lib/_utils";
 import { useAnimationFrame } from "../lib/hook/_useAnimationFrame";
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
-import * as fp from "fingerpose";
-import FiveFingerGesture from "../lib/gesture/_fivefingers";
+import GE from "../lib/gesture/_fivefingers";
 
 tfjsWasm.setWasmPaths(
   `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm`
@@ -61,7 +60,6 @@ export default function Cam() {
   const videoRef = useRef<HTMLVideoElement>();
   const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
 
-  const GE = new fp.GestureEstimator([FiveFingerGesture]);
   useEffect(() => {
     async function initialize() {
       videoRef.current = await setupVideo();
