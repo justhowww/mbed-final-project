@@ -5,7 +5,7 @@ import "@tensorflow/tfjs-backend-webgl";
 import { drawHands, transformLandmarks } from "../lib/_utils";
 import { useAnimationFrame } from "../lib/hook/_useAnimationFrame";
 import GE from "../lib/gesture/_fivefingers";
-import { setupCanvas, setupDetector, setupVideo } from "../lib/_setup";
+import { setupCanvas, setupVideo } from "../lib/_setup";
 
 export default function Cam() {
   const detectorRef = useRef<any>();
@@ -14,8 +14,8 @@ export default function Cam() {
 
   useEffect(() => {
     async function initialize() {
-      // videoRef.current = (await setupVideo()) as HTMLVideoElement;
-      // const ctx = await setupCanvas(videoRef.current);
+      videoRef.current = (await setupVideo()) as HTMLVideoElement;
+      const ctx = await setupCanvas(videoRef.current);
       // detectorRef.current = await setupDetector();
       // setCtx(ctx || undefined);
     }
