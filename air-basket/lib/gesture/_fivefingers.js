@@ -23,4 +23,5 @@ for (let finger of [
   );
 }
 
-export default GE = new fp.GestureEstimator([FiveFingerGesture]);
+const GE = new fp.GestureEstimator([FiveFingerGesture]);
+export default GE
