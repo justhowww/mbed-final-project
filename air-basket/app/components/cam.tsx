@@ -7,7 +7,7 @@ import { useAnimationFrame } from "../lib/hook/_useAnimationFrame";
 import GE from "../lib/gesture/_fivefingers";
 import { setupCanvas, setupVideo } from "../lib/_setup";
 
-export default function Cam() {
+export default function Cam(setupDetector: any) {
   const detectorRef = useRef<any>();
   const videoRef = useRef<HTMLVideoElement>();
   // const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
@@ -16,7 +16,7 @@ export default function Cam() {
     async function initialize() {
       videoRef.current = (await setupVideo()) as HTMLVideoElement;
       const ctx = await setupCanvas(videoRef.current);
-      // detectorRef.current = await setupDetector();
+      detectorRef.current = await setupDetector();
       // setCtx(ctx || undefined);
     }
     initialize();
@@ -53,10 +53,10 @@ export default function Cam() {
 
   return (
     <div className="mt-2 border-4 border-blue-500 ">
-      {/* <canvas
+      <canvas
         className="transform scaleX(-1) z-10 rounded-lg shadow-md "
         id="canvas"
-      ></canvas> */}
+      ></canvas>
       <video
         className="hidden transform scaleX(-1) "
         id="video"

@@ -1,9 +1,23 @@
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
+import {
+  createDetector,
+  SupportedModels,
+} from "@tensorflow-models/hand-pose-detection";
 import Cam from "@/app/components/cam";
 tfjsWasm.setWasmPaths(
   `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm`
 );
 export default function Home() {
+  async function setupDetector() {
+    const model = SupportedModels.MediaPipeHands;
+    const detector = await createDetector(model, {
+      runtime: "mediapipe",
+      maxHands: 2,
+      solutionPath: "https://cdn.jsdelivr.net/npm/@mediapipe/hands",
+    });
+
+    return detector;
+  }
   return (
     <div className="flex h-screen">
       <div className="flex flex-col w-3/4 p-4 border-r border-blue-500">
@@ -21,7 +35,7 @@ export default function Home() {
         <div className="flex-grow" />
         <div className="p-4 border-4 border-blue-500">
           <h2>Your view:</h2>
-          <Cam />
+          <Cam setupDetector={setupDetector} />
         </div>
       </div>
     </div>
