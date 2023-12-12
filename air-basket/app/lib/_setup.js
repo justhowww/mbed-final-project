@@ -1,7 +1,7 @@
-// import {
-//   createDetector,
-//   SupportedModels,
-// } from "@tensorflow-models/hand-pose-detection";
+import {
+  createDetector,
+  SupportedModels,
+} from "@tensorflow-models/hand-pose-detection";
 import { fitToContainer } from "./_utils";
 
 export async function setupVideo() {
