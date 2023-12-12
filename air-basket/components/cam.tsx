@@ -5,12 +5,15 @@ import {
   SupportedModels,
 } from "@tensorflow-models/hand-pose-detection";
 import "@tensorflow/tfjs-backend-webgl";
-import { drawHands, fitToContainer, transformLandmarks } from "../lib/utils";
-import Link from "next/link";
-import { useAnimationFrame } from "../lib/hook/useAnimationFrame";
+import {
+  drawHands,
+  fitToContainer,
+  transformLandmarks,
+} from "../api/lib/utils";
+import { useAnimationFrame } from "../api/lib/hook/useAnimationFrame";
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
 import * as fp from "fingerpose";
-import FiveFingerGesture from "../lib/gesture/fivefingers";
+import FiveFingerGesture from "../api/lib/gesture/fivefingers";
 
 tfjsWasm.setWasmPaths(
   `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm`
