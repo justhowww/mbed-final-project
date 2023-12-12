@@ -187,34 +187,7 @@ const TRIANGULATION = [
 
 const NUM_KEYPOINTS = 100;
 
-export const drawFaces = (faces, ctx, contours) => {
-  for (let i = 0; i < faces.length; i++) {
-    const face = faces[i];
-    ctx.strokeStyle = "#32EEDB";
-    ctx.fillStyle = "#000";
-
-    for (let y = 0; y < TRIANGULATION.length / 3; y++) {
-      const points = [
-        TRIANGULATION[y * 3],
-        TRIANGULATION[y * 3 + 1],
-        TRIANGULATION[y * 3 + 2],
-      ].map((index) => face.keypoints[index]);
-
-      drawPath(points, ctx, true);
-    }
-
-    for (const [label, contour] of Object.entries(contours)) {
-      ctx.strokeStyle = LABEL_TO_COLOR[label];
-
-      const path = contour.map((index) => face.keypoints[index]);
-      if (path.every((value) => value != undefined)) {
-        drawPath(path, ctx, false);
-      }
-    }
-  }
-};
-
-export const drawHands = (hands, ctx, showNames = false) => {
+export const drawHands = (hands: any[], ctx: { fillStyle: string; strokeStyle: string; lineWidth: number; beginPath: () => void; arc: (arg0: any, arg1: any, arg2: number, arg3: number, arg4: number) => void; fill: () => void; }, showNames = false) => {
   if (hands.length <= 0) {
     return;
   }
@@ -243,18 +216,17 @@ export const drawHands = (hands, ctx, showNames = false) => {
       }
     }
 
-    const fingers = Object.keys(FINGER_LOOKUP_INDICES);
+    const fingers: Array<keyof typeof FINGER_LOOKUP_INDICES> = Object.keys(FINGER_LOOKUP_INDICES) as Array<keyof typeof FINGER_LOOKUP_INDICES>;
     for (let z = 0; z < fingers.length; z++) {
       const finger = fingers[z];
-      const points = FINGER_LOOKUP_INDICES[finger].map(
-        (idx) => hands[i].keypoints[idx]
-      );
+      const points = FINGER_LOOKUP_INDICES[finger].map((idx: number) => hands[i].keypoints[idx]);
+
       drawPath(points, ctx);
     }
   }
 };
 
-const drawInvertedText = (keypoint, ctx) => {
+const drawInvertedText = (keypoint: { x: number; y: any; name: any; }, ctx: { fillStyle?: string; strokeStyle?: string; lineWidth?: number; beginPath?: () => void; arc?: (arg0: any, arg1: any, arg2: number, arg3: number, arg4: number) => void; fill?: () => void; save?: any; translate?: any; rotate?: any; scale?: any; fillText?: any; restore?: any; }) => {
   ctx.save();
   ctx.translate(keypoint.x - 10, keypoint.y);
   ctx.rotate(-Math.PI / 1);
@@ -263,7 +235,7 @@ const drawInvertedText = (keypoint, ctx) => {
   ctx.restore();
 };
 
-const drawPath = (points, ctx, closePath = false) => {
+const drawPath = (points: string | any[], ctx: { fillStyle?: string; strokeStyle?: string; lineWidth?: number; beginPath?: () => void; arc?: (arg0: any, arg1: any, arg2: number, arg3: number, arg4: number) => void; fill?: () => void; stroke?: any; }, closePath = false) => {
   const region = new Path2D();
   region.moveTo(points[0]?.x, points[0]?.y);
   for (let i = 1; i < points.length; i++) {
@@ -278,7 +250,7 @@ const drawPath = (points, ctx, closePath = false) => {
   ctx.stroke(region);
 };
 
-export function fitToContainer(canvas) {
+export function fitToContainer(canvas: HTMLCanvasElement) {
   // Make it visually fill the positioned parent
   canvas.style.width = "100%";
   canvas.style.height = "100%";
@@ -287,7 +259,7 @@ export function fitToContainer(canvas) {
   canvas.height = canvas.offsetHeight;
 }
 
-export function transformLandmarks(keypoints3D) {
+export function transformLandmarks(keypoints3D: any) {
   let landmarks = [];
   for (const keypoint of keypoints3D) {
     landmarks.push([keypoint.x, keypoint.y, keypoint.z]);
