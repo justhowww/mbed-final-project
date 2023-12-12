@@ -9,8 +9,8 @@ import {
   drawHands,
   fitToContainer,
   transformLandmarks,
-} from "../api/lib/utils";
-import { useAnimationFrame } from "../api/lib/hook/useAnimationFrame";
+} from "../api/lib/_utils";
+import { useAnimationFrame } from "../api/lib/hook/_useAnimationFrame";
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
 import * as fp from "fingerpose";
 import FiveFingerGesture from "../api/lib/gesture/_fivefingers";
