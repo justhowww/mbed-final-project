@@ -15,7 +15,7 @@ export default function Cam() {
   useEffect(() => {
     async function initialize() {
       videoRef.current = (await setupVideo()) as HTMLVideoElement;
-      const ctx = await setupCanvas(videoRef.current);
+      // const ctx = await setupCanvas(videoRef.current);
       detectorRef.current = await setupDetector();
       // setCtx(ctx || undefined);
     }
