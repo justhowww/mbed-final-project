@@ -14,6 +14,7 @@ const nextConfig = {
 };
 module.exports = {
   ...nextConfig,
+  output: "standalone",
   webpack: (
     config,
     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
