@@ -13,13 +13,13 @@ export default function Cam() {
   // const [ctx, setCtx] = useState<CanvasRenderingContext2D>();
 
   useEffect(() => {
-    // async function initialize() {
-    //   videoRef.current = (await setupVideo()) as HTMLVideoElement;
-    //   const ctx = await setupCanvas(videoRef.current);
-    //   detectorRef.current = await setupDetector();
-    //   setCtx(ctx || undefined);
-    // }
-    // initialize();
+    async function initialize() {
+      videoRef.current = (await setupVideo()) as HTMLVideoElement;
+      const ctx = await setupCanvas(videoRef.current);
+      detectorRef.current = await setupDetector();
+      // setCtx(ctx || undefined);
+    }
+    initialize();
   }, []);
 
   // useAnimationFrame(async (delta: any) => {
