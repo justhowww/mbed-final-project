@@ -1,5 +1,5 @@
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
-import Cam from "@/components/cam";
+import Cam from "@/app/components/cam";
 tfjsWasm.setWasmPaths(
   `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm`
 );
