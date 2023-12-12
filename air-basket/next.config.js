@@ -15,6 +15,16 @@ const nextConfig = {
 module.exports = {
   ...nextConfig,
   output: "standalone",
+  experimental: {
+    outputFileTracingExcludes: {
+      "*": [
+        "node_modules/@tensorflow/tfjs-backend-wasm",
+        "node_modules/@tensorflow/tfjs-backend-webgl",
+        "node_modules/@tensorflow/tfjs-converter",
+        "node_modules/@tensorflow/tfjs-core",
+      ],
+    },
+  },
   webpack: (
     config,
     { buildId, dev, isServer, defaultLoaders, nextRuntime, webpack }
