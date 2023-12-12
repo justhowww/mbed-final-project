@@ -7,12 +7,7 @@ import {
 import "@tensorflow/tfjs-backend-webgl";
 import { drawHands, fitToContainer, transformLandmarks } from "../lib/_utils";
 import { useAnimationFrame } from "../lib/hook/_useAnimationFrame";
-import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
 import GE from "../lib/gesture/_fivefingers";
-
-tfjsWasm.setWasmPaths(
-  `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm`
-);
 
 async function setupVideo() {
   const video = document.getElementById("video") as HTMLVideoElement;
