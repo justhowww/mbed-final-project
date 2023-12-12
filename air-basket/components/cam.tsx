@@ -13,7 +13,7 @@ import {
 import { useAnimationFrame } from "../api/lib/hook/useAnimationFrame";
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
 import * as fp from "fingerpose";
-import FiveFingerGesture from "../api/lib/gesture/fivefingers";
+import FiveFingerGesture from "../api/lib/gesture/_fivefingers";
 
 tfjsWasm.setWasmPaths(
   `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm`
