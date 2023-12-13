@@ -24,10 +24,6 @@ export default function Home() {
             <h2> Hand Detection &rarr;</h2>
             <p>Hand pose detection by TensorFlow 👋</p>
           </Link>
-          {/* <Link href="/face-landmark-detection" className={styles.card}>
-            <h2> Face Detection &rarr;</h2>
-            <p>Face landmark detection by TensorFlow 🤓</p>
-          </Link> */}
         </div>
       </main>
     </div>
