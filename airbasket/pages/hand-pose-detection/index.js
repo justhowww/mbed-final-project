@@ -5,10 +5,11 @@ import {
   SupportedModels,
 } from "@tensorflow-models/hand-pose-detection";
 import "@tensorflow/tfjs-backend-webgl";
-import { drawHands } from "../../lib/utils";
+import { drawHands, transformLandmarks, fitToContainer } from "../../lib/utils";
 import Link from "next/link";
 import { useAnimationFrame } from "../../lib/hooks/useAnimationFrame";
 import * as tfjsWasm from "@tensorflow/tfjs-backend-wasm";
+import GE from "/lib/fivefingers";
 
 tfjsWasm.setWasmPaths(
   `https://cdn.jsdelivr.net/npm/@tensorflow/tfjs-backend-wasm`
@@ -47,6 +48,8 @@ async function setupDetector() {
 
 async function setupCanvas(video) {
   const canvas = document.getElementById("canvas");
+  fitToContainer(canvas);
+
   const ctx = canvas.getContext("2d");
 
   canvas.width = video.width;
@@ -76,6 +79,13 @@ export default function HandPoseDetection() {
     const hands = await detectorRef.current.estimateHands(video, {
       flipHorizontal: false,
     });
+    if (hands.length > 0) {
+      const estimatedGestures = GE.estimate(
+        transformLandmarks(hands[0].keypoints3D),
+        8
+      );
+      console.log(estimatedGestures.gestures);
+    }
 
     ctx.clearRect(
       0,
