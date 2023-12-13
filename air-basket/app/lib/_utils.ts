@@ -211,9 +211,7 @@ export const drawHands = (hands: any[], ctx: CanvasRenderingContext2D ) => {
       ctx.arc(keypoint.x, keypoint.y, 4, 0, 2 * Math.PI);
       ctx.fill();
 
-      if (showNames) {
-        drawInvertedText(keypoint, ctx);
-      }
+      drawInvertedText(keypoint, ctx);
     }
 
     const fingers: Array<keyof typeof FINGER_LOOKUP_INDICES> = Object.keys(FINGER_LOOKUP_INDICES) as Array<keyof typeof FINGER_LOOKUP_INDICES>;
@@ -226,7 +224,7 @@ export const drawHands = (hands: any[], ctx: CanvasRenderingContext2D ) => {
   }
 };
 
-const drawInvertedText = (keypoint: { x: number; y: any; name: any; }, ctx: { fillStyle?: string; strokeStyle?: string; lineWidth?: number; beginPath?: () => void; arc?: (arg0: any, arg1: any, arg2: number, arg3: number, arg4: number) => void; fill?: () => void; save?: any; translate?: any; rotate?: any; scale?: any; fillText?: any; restore?: any; }) => {
+const drawInvertedText = (keypoint: { x: number; y: any; name: any; }, ctx:CanvasRenderingContext2D) => {
   ctx.save();
   ctx.translate(keypoint.x - 10, keypoint.y);
   ctx.rotate(-Math.PI / 1);
@@ -235,7 +233,7 @@ const drawInvertedText = (keypoint: { x: number; y: any; name: any; }, ctx: { fi
   ctx.restore();
 };
 
-const drawPath = (points: string | any[], ctx: { fillStyle?: string; strokeStyle?: string; lineWidth?: number; beginPath?: () => void; arc?: (arg0: any, arg1: any, arg2: number, arg3: number, arg4: number) => void; fill?: () => void; stroke?: any; }, closePath = false) => {
+const drawPath = (points: string | any[], ctx: CanvasRenderingContext2D) => {
   const region = new Path2D();
   region.moveTo(points[0]?.x, points[0]?.y);
   for (let i = 1; i < points.length; i++) {
@@ -243,9 +241,7 @@ const drawPath = (points: string | any[], ctx: { fillStyle?: string; strokeStyle
     region.lineTo(point?.x, point?.y);
   }
 
-  if (closePath) {
-    region.closePath();
-  }
+  region.closePath();
 
   ctx.stroke(region);
 };
