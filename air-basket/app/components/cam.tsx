@@ -48,7 +48,7 @@ export default function Cam() {
         videoRef.current.videoHeight
       );
     }
-    drawHands(hands, ctx);
+    if (ctx) drawHands(hands, ctx);
   }, !!(detectorRef.current && videoRef.current && ctx));
 
   return (

@@ -187,7 +187,7 @@ const TRIANGULATION = [
 
 const NUM_KEYPOINTS = 100;
 
-export const drawHands = (hands: any[], ctx: { fillStyle: string; strokeStyle: string; lineWidth: number; beginPath: () => void; arc: (arg0: any, arg1: any, arg2: number, arg3: number, arg4: number) => void; fill: () => void; }, showNames = false) => {
+export const drawHands = (hands: any[], ctx: CanvasRenderingContext2D ) => {
   if (hands.length <= 0) {
     return;
   }
