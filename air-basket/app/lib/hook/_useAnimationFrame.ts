@@ -1,19 +1,18 @@
 import { useEffect, useRef } from "react";
 
-export const useAnimationFrame = (callback, shouldAnimate = false) => {
+export const useAnimationFrame = (callback: { (delta: any): Promise<void>; (arg0: number): void; }, shouldAnimate = false) => {
   const frameRef = useRef(0);
-  const timeRef = useRef();
+  const timeRef = useRef<number>();
 
-  const animate = (time) => {
-    if (timeRef.current != undefined) {
+  const animate = (time: number) => {
+    if (timeRef.current != undefined && time) {
       const deltaTime = time - timeRef.current;
       callback(deltaTime);
     }
-
     timeRef.current = time;
     frameRef.current = requestAnimationFrame(animate);
   };
-
+ 
   useEffect(() => {
     if (shouldAnimate) {
       frameRef.current = requestAnimationFrame(animate);
