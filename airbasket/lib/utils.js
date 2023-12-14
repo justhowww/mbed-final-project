@@ -278,13 +278,14 @@ const drawPath = (points, ctx, closePath = false) => {
   ctx.stroke(region);
 };
 
-export function fitToContainer(canvas) {
+export function fitToContainer(c) {
+  console.log(c);
   // Make it visually fill the positioned parent
-  canvas.style.width = "100%";
-  canvas.style.height = "100%";
+  c.style.width = "100%";
+  c.style.height = "100%";
   // ...then set the internal size to match
-  canvas.width = canvas.offsetWidth;
-  canvas.height = canvas.offsetHeight;
+  c.width = c.offsetWidth;
+  c.height = c.offsetHeight;
 }
 
 export function transformLandmarks(keypoints3D) {

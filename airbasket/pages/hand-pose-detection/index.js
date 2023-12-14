@@ -1,4 +1,7 @@
+import useScript from "/lib/hooks/useScript";
+
 import styles from "../../styles/Home.module.css";
+import Simulation from "../../components/simulation";
 import { useEffect, useRef, useState } from "react";
 import {
   createDetector,
@@ -17,7 +20,7 @@ tfjsWasm.setWasmPaths(
 
 async function setupVideo() {
   const video = document.getElementById("video");
-  const stream = await window.navigator.mediaDevices.getUserMedia({
+  const stream = await navigator.mediaDevices.getUserMedia({
     video: true,
   });
 
@@ -47,13 +50,13 @@ async function setupDetector() {
 }
 
 async function setupCanvas(video) {
-  const canvas = document.getElementById("canvas");
-  fitToContainer(canvas);
+  const handpose_canvas = document.getElementById("canvas");
+  fitToContainer(handpose_canvas);
 
-  const ctx = canvas.getContext("2d");
+  const ctx = handpose_canvas.getContext("2d");
 
-  canvas.width = video.width;
-  canvas.height = video.height;
+  handpose_canvas.width = video.width;
+  handpose_canvas.height = video.height;
 
   return ctx;
 }
@@ -80,11 +83,12 @@ export default function HandPoseDetection() {
       flipHorizontal: false,
     });
     if (hands.length > 0) {
+      console.log(hands[0].handedness);
       const estimatedGestures = GE.estimate(
         transformLandmarks(hands[0].keypoints3D),
-        8
+        9.5
       );
-      console.log(estimatedGestures.gestures);
+      //   console.log(estimatedGestures.gestures);
     }
 
     ctx.clearRect(
@@ -106,7 +110,9 @@ export default function HandPoseDetection() {
   return (
     <div className="flex h-screen">
       <div className="flex flex-col w-3/4 p-4 border-r border-blue-500">
-        <div className="flex-grow border-4 border-blue-500"></div>
+        <div className="flex-grow border-4 border-blue-500">
+          <Simulation />
+        </div>
       </div>
       <div className="flex flex-col w-1/4 p-4 space-y-4">
         <div className="p-4 border-4 border-blue-500">
