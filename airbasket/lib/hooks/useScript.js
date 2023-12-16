@@ -1,18 +1,74 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
-const useScript = (url) => {
+export const useExternalScript = (url) => {
+  let [state, setState] = useState(url ? "loading" : "idle");
+
   useEffect(() => {
-    const script = document.createElement("script");
+    if (!url) {
+      setState("idle");
+      return;
+    }
 
-    script.src = url;
-    script.async = true;
+    let script = document.querySelector(`script[src="${url}"]`);
 
-    document.body.appendChild(script);
+    const handleScript = (e) => {
+      setState(e.type === "load" ? "ready" : "error");
+    };
+
+    if (!script) {
+      script = document.createElement("script");
+      script.type = "text/javascript";
+      script.src = url;
+      document.body.appendChild(script);
+      script.addEventListener("load", handleScript);
+      script.addEventListener("error", handleScript);
+    }
+
+    script.addEventListener("load", handleScript);
+    script.addEventListener("error", handleScript);
 
     return () => {
-      document.body.removeChild(script);
+      script.removeEventListener("load", handleScript);
+      script.removeEventListener("error", handleScript);
     };
   }, [url]);
+
+  return state;
 };
 
-export default useScript;
+export const useExternalLink = (url) => {
+  let [state, setState] = useState(url ? "loading" : "idle");
+
+  useEffect(() => {
+    if (!url) {
+      setState("idle");
+      return;
+    }
+
+    let link = document.querySelector(`link[href="${url}"]`);
+
+    const handleScript = (e) => {
+      setState(e.type === "load" ? "ready" : "error");
+    };
+
+    if (!link) {
+      link = document.createElement("link");
+      link.rel = "stylesheet";
+      link.href = url;
+      link.type = "text/css";
+      document.body.appendChild(link);
+      link.addEventListener("load", handleScript);
+      link.addEventListener("error", handleScript);
+    }
+
+    link.addEventListener("load", handleScript);
+    link.addEventListener("error", handleScript);
+
+    return () => {
+      link.removeEventListener("load", handleScript);
+      link.removeEventListener("error", handleScript);
+    };
+  }, [url]);
+
+  return state;
+};
